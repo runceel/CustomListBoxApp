@@ -1,0 +1,35 @@
+﻿<Window x:Class="CustomListBoxApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CustomListBoxApp"
+        xmlns:Controls="clr-namespace:CustomListBoxApp.Controls;assembly=CustomListBoxApp.Controls"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="350"
+        Width="525">
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ToolBar>
+            <Button Content="Alert"
+                    Click="Button_Click" />
+        </ToolBar>
+        <Controls:CustomListBox x:Name="ListBox"
+                                ItemsSource="{Binding People}"
+                                SelectionMode="Multiple"
+                                Grid.Row="1">
+            <Controls:CustomListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:Person}">
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </Controls:CustomListBox.ItemTemplate>
+        </Controls:CustomListBox>
+    </Grid>
+</Window>
